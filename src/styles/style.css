@@ -1,0 +1,108 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav>li>a {
+	color: #fff;
+}
+.navbar-brand {
+	font-size: 24px;
+}
+#content {
+	margin-top: 100px;
+}
+.nav>li {
+	float: left;
+}
+input.ng-invalid.ng-touched {
+	border-color: #FA787E;
+}
+.dirtyBlock, .required{
+	color: red;
+}
+.norecs {
+	text-align: center;
+	font-weight: bold;
+}
+.pagination {
+	display: block;
+}
+.btn.active {
+	font-weight: bold;
+}
+#rpp {
+	width: 100px;
+}
+#filterTypes, .tableHeader {
+	text-transform: capitalize;
+}
+.studentList {
+	margin-top: 10px;
+}
+.loader {
+	padding: 20px;
+	margin: 200px auto;
+	width: 200px;
+	border-radius: 50px;
+	text-align: center;
+
+}
+th {
+	cursor: pointer;
+	background: #777;
+	color: #fff;
+}
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+
+hr {
+    border-bottom: 3px solid #333;
+}
+.alerts {
+ position:fixed;
+ width:300px;
+ right:30px;
+ top:30px;
+ z-index:10; 
+}
+.alerts>.alert-dismissable {
+ position:relative;
+ z-index:11;
+ min-width:250px;
+}
+.tnp {
+	padding-right: 20px;
+}
+.tnp label {
+	clear: right;
+}
+.tnp input {
+	width: 150px;
+}
+.rppWrapper label, .rppWrapper input {
+	float: left;
+}
+.rppWrapper label {
+	padding-right: 20px;
+}
+
+@media only screen and (max-width:767px) {
+	.nav>li {
+	    float: none;
+	}
+	#search {
+		margin-bottom: 20px;
+	}
+}

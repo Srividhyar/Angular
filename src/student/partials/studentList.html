@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-xs-12 col-md-8"><h4>Student List</h4></div>
+  <div class="col-xs-6 col-md-2"></div>
+  <div class="col-xs-6 col-md-2"><label>Search:</label><input type="text" id="search" class="form-control" ng-model="searchText"/></div></div>
+  <div class="table-responsive">
+    <table class="table table-striped studentList table-bordered">
+      <thead>
+        <tr class="text-info studentTableHeader">
+          <th ng-click="listStudent.predicate = 'name'; listStudent.reverse=!listStudent.reverse" class="text-center">Name</th>
+          <th ng-click="listStudent.predicate = 'rollno'; listStudent.reverse=!listStudent.reverse">RollNo</th>
+          <th ng-click="listStudent.predicate = 'dob'; listStudent.reverse=!listStudent.reverse">DOB</th>
+          <th ng-click="listStudent.predicate = 'linkedin'; listStudent.reverse=!listStudent.reverse" class="text-center">URL</th>
+          <th ng-click="listStudent.predicate = 'mailid'; listStudent.reverse=!listStudent.reverse" class="text-center">Email</th>
+          <th ng-click="listStudent.predicate = 'state'; listStudent.reverse=!listStudent.reverse" class="text-center">State</th>
+          <th ng-click="listStudent.predicate = 'phone'; listStudent.reverse=!listStudent.reverse">Phone</th>
+          <th colspan="2" class="text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>   
+        <tr ng-repeat="(key,student) in (resultStudent=(listStudent.students | pagination: (listStudent.curPage-1) * listStudent.pageSize | limitTo: listStudent.pageSize | filter: searchText | orderBy:listStudent.predicate:listStudent.reverse))">
+          <td>{{student.name}}</td>
+          <td>{{student.rollno}}</td>
+          <td>{{student.dob | date:'MM/dd/yyyy'}}</td>
+          <td><a ng-href="{{student.linkedin}}">{{student.linkedin}}</a></td>
+          <td><a ng-href="mailto:{{student.mailid}}">{{student.mailid}}</a></td>
+          <td>{{student.state}}</td>
+          <td><span>(+91)-</span>{{student.phone}}</td>
+          <td><button ng-click="listStudent.editStudentRec(key,student._id.$oid)" class="btn btn-success">Edit</button></td>
+          <td><button class="btn btn-warning" ng-click="listStudent.deleteStudent(student._id.$oid)"> Delete </button></td>      
+        </tr>
+        <tr><td colspan="8" class="norecs text-danger bg-danger" ng-show="!resultStudent.length">No Records Found</p></tr>
+      </tbody>
+    </table>
+  </div>
+  <hr />
+  <div class="row" ng-show="listStudent.students.length">   
+    <div class="col-xs-6 form-group">
+      <label for="rpp" class="text-primary">Records Per Page</label>
+      <select id="rpp" class="form-control" placeholder=".col-xs-2" ng-model="listStudent.pageSize" ng-change="listStudent.updateRanger()" ng-options="records for records in listStudent.recordPerPage"></select>
+    </div>
+    <div class="pull-right tnp"><label class="text-primary">Total No. of Records: {{listStudent.students.length}}</label>
+    </div>      
+  </div>
+
+  <div class="row">   
+    <div class="col-xs-12">     
+      <ul class="pagination text-center">
+       <li><button class="btn btn-success" ng-disabled="listStudent.curPage == 1" ng-click="listStudent.curPage = 1"> &laquo;</button></li>
+       <li><button class="btn btn-success"ng-disabled="listStudent.curPage == 1" ng-click="listStudent.chkPrev()"> &lsaquo;</button></li>
+       <li ng-repeat="i in listStudent.range">&nbsp;<button class="btn btn-success" ng-click="listStudent.setCurrent(i)" ng-class="{'active': listStudent.curPage==i}">{{i}}</button>&nbsp;</li>
+       <li><button class="btn btn-success"ng-disabled="listStudent.curPage >= listStudent.numberOfPages()" ng-click="listStudent.chkNext()">&rsaquo;</button></li>
+       <li><button class="btn btn-success" ng-disabled="listStudent.curPage >= listStudent.numberOfPages()" ng-click="listStudent.curPage = listStudent.numberOfPages()"> &raquo;</button></li>
+     </ul>
+   </div>
+ </div>
